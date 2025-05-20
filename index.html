@@ -10,16 +10,19 @@
 
   <style>
     /* Cyberpunk CSS */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Orbitron', 'Audiowide', sans-serif;
       background-color: #0d0d0d;
       color: #00f0ff;
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth;
     }
+
     header {
       background: #1a1a2e;
       box-shadow: 0 0 10px #ff00c8, 0 0 30px #00f0ff;
@@ -27,6 +30,7 @@
       top: 0;
       z-index: 100;
     }
+
     nav {
       max-width: 1000px;
       margin: auto;
@@ -35,35 +39,39 @@
       justify-content: space-between;
       align-items: center;
     }
+
     h1 {
       font-weight: 700;
       font-size: 1.8rem;
       color: #ff00c8;
       position: relative;
-      text-shadow:
-        0 0 5px #ff00c8,
-        0 0 10px #ff00c8,
-        0 0 20px #ff00c8;
+      text-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8;
       animation: glitch 2s infinite;
     }
+
     @keyframes glitch {
-      0% { text-shadow: 2px 0 #ff00c8, -2px 0 #00f0ff; }
-      20% { text-shadow: -2px 0 #ff00c8, 2px 0 #00f0ff; }
-      40% { text-shadow: 2px 0 #ff00c8, -2px 0 #00f0ff; }
-      60% { text-shadow: -2px 0 #ff00c8, 2px 0 #00f0ff; }
-      80% { text-shadow: 2px 0 #ff00c8, -2px 0 #00f0ff; }
-      100% { text-shadow: -2px 0 #ff00c8, 2px 0 #00f0ff; }
+      0%, 100% { text-shadow: 2px 0 #ff00c8, -2px 0 #00f0ff; }
+      50% { text-shadow: -2px 0 #ff00c8, 2px 0 #00f0ff; }
     }
-    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
     nav ul li a {
       text-decoration: none;
       color: #00f0ff;
       font-weight: 600;
       text-shadow: 0 0 5px #00f0ff;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      cursor: pointer;
     }
-    nav ul li a:hover { color: #ff00c8; text-shadow: 0 0 12px #ff00c8; }
+
+    nav ul li a:hover {
+      color: #ff00c8;
+      text-shadow: 0 0 12px #ff00c8;
+    }
+
     section {
       max-width: 800px;
       margin: 3rem auto;
@@ -71,21 +79,21 @@
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 0 20px #00f0ff inset, 0 0 30px #ff00c8;
-      color: #00f0ff;
-      text-shadow: 0 0 4px #00f0ff;
     }
+
     section h2 {
       margin-bottom: 1rem;
       font-size: 2.4rem;
       color: #ff00c8;
       text-shadow: 0 0 15px #ff00c8;
-      font-weight: 700;
     }
+
     #welcome {
       text-align: center;
       background: linear-gradient(135deg, #2b003f 0%, #000011 100%);
       box-shadow: 0 0 50px #ff00c8 inset;
     }
+
     #welcome img {
       width: 160px;
       height: 160px;
@@ -96,8 +104,19 @@
       border: 3px solid #00f0ff;
       transition: transform 0.3s ease;
     }
-    #welcome img:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 40px #ff00c8, 0 0 80px #00f0ff; }
-    #welcome video { max-width: 100%; border-radius: 15px; box-shadow: 0 0 40px #00f0ff; margin-top: 1rem; }
+
+    #welcome img:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 40px #ff00c8, 0 0 80px #00f0ff;
+    }
+
+    #welcome video {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 40px #00f0ff;
+      margin-top: 1rem;
+    }
+
     footer {
       background-color: #1a1a2e;
       color: #ff00c8;
@@ -105,23 +124,36 @@
       padding: 1.5rem 1rem;
       margin-top: 3rem;
       font-size: 1rem;
-      text-shadow: 0 0 10px #ff00c8;
     }
+
     footer a {
       color: #00f0ff;
       text-decoration: none;
-      font-weight: 600;
-      text-shadow: 0 0 5px #00f0ff;
     }
-    footer a:hover { color: #ff00c8; text-shadow: 0 0 12px #ff00c8; }
+
+    .contact-links p {
+      margin: 0.5rem 0;
+    }
+
     @media (max-width: 600px) {
-      nav ul { gap: 1rem; }
-      section { margin: 1.5rem 1rem; padding: 1.5rem; }
-      nav h1 { font-size: 1.4rem; }
+      nav ul {
+        gap: 1rem;
+      }
+
+      section {
+        margin: 1.5rem 1rem;
+        padding: 1.5rem;
+      }
+
+      nav h1 {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <nav>
       <h1>My Portfolio</h1>
@@ -131,18 +163,23 @@
         <li><a href="#achievements">Achievements</a></li>
         <li><a href="#goals">Goals</a></li>
         <li><a href="#personal">Personal</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
+
+  <!-- Welcome -->
   <section id="welcome">
     <h2>Welcome! I'm Krish Rukesh Gharat 👋</h2>
     <p>Glad to have you visit my digital space.</p>
-    <img src="profile.jpg" alt="Krish Rukesh Gharat's profile photo" />
+    <img src="images/profile.jpg" alt="Krish Rukesh Gharat" />
     <video controls>
       <source src="videos/intro.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </section>
+
+  <!-- About -->
   <section id="about">
     <h2>About Me</h2>
     <p><strong>Name:</strong> Krish Rukesh Gharat</p>
@@ -150,30 +187,50 @@
     <p><strong>Education:</strong> Pursuing EXCS Degree from St John College of Engineering and Management</p>
     <p><strong>Languages:</strong> English, Hindi, Marathi</p>
   </section>
+
+  <!-- Achievements -->
   <section id="achievements">
     <h2>Achievements</h2>
-    <p>Gesture Vocalizer Project</p>
-    <p>Certificate in Cybersecurity </p>
+    <ul>
+      <li>Gesture Vocalizer Device</li>
+      <li>Certificate in Cybersecurity</li>
+    </ul>
   </section>
+
+  <!-- Goals -->
   <section id="goals">
     <h2>Future Goals</h2>
     <p>I aim to become a full-stack web developer and build real-world applications that solve problems. I also plan to contribute to open-source projects and help others learn coding.</p>
   </section>
+
+  <!-- Personal -->
   <section id="personal">
     <h2>A Bit About My Personal Side</h2>
     <p><strong>Hobbies:</strong> Coding, Reading, Photography – great ways to learn and relax.</p>
     <p><strong>Favorite Books:</strong> “Atomic Habits”, “The Lean Startup” – excellent for self-growth.</p>
     <p><strong>Startups I admire:</strong> Notion, Figma – they focus on user experience and collaboration.</p>
   </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-links">
+      <p><strong>Phone:</strong> <a href="tel:8788567958">8788567958</a></p>
+      <p><strong>Email:</strong> <a href="mailto:123krish7001@sjcem.edu.in">123krish7001@sjcem.edu.in</a></p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/krishgharat" target="_blank">github.com/krishgharat</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/krish-r-080478297/" target="_blank">linkedin.com/in/krish-r</a></p>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/krishgharat_02?igsh=aDF0YWZkYWwxOHZr" target="_blank">@krishgharat_02</a></p>
+      <p><strong>Location:</strong> <a href="https://www.google.com/maps/place/Maharashtra" target="_blank">Maharashtra, India</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>Made with 💙 by Krish Rukesh Gharat | © 2025</p>
     <p>
-      <a href="https://krishgharat.github.io/Krish/" target="_blank" rel="noopener noreferrer">GitHub</a> |
-      <a href="https://www.linkedin.com/in/krish-r-080478297/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <strong>GitHub:</strong> <a href="https://krishgharat.github.io/Krish/" target="_blank">krishgharat.github.io/Krish/</a>
     </p>
   </footer>
-  <script>
-    // Future JS: smooth scroll fallback or active link highlighting
-  </script>
+
 </body>
 </html>
