@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,226 +11,342 @@
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0a0a0f" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
   <title>Krish Gharat | Cyberpunk Portfolio</title>
-
+  <!-- Tailwind CSS and DaisyUI -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+  <!-- Cookie Consent -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
-
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Orbitron', 'Audiowide', sans-serif;
-      background-color: #0d0d0d;
-      color: #00f0ff;
-      line-height: 1.6;
-    }
-    a { color: #00f0ff; text-decoration: none; }
-    a:hover { color: #ff00c8; }
-
-    header {
-      background-color: #1a1a2e;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 0 10px #ff00c8, 0 0 30px #00f0ff;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1000px;
-      margin: auto;
-    }
-    nav h1 {
-      font-size: 1.8rem;
-      color: #ff00c8;
-      text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-    nav ul li a {
-      padding: 0.5rem;
-      font-weight: bold;
-      text-shadow: 0 0 5px #00f0ff;
-    }
-    #hamburger {
-      display: none;
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: #00f0ff;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: #1f1f2f;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        border-radius: 8px;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      #hamburger {
-        display: block;
-      }
-    }
-
-    section {
-      max-width: 800px;
-      margin: 3rem auto;
-      background-color: #111122;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00f0ff inset, 0 0 30px #ff00c8;
-      color: #00f0ff;
-      text-shadow: 0 0 4px #00f0ff;
-    }
-    section h2 {
-      font-size: 2rem;
-      color: #ff00c8;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px #ff00c8;
-    }
-    section p, section li {
-      margin-bottom: 0.75rem;
-    }
-    ul { list-style: disc inside; }
-
-    #welcome img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin: 1rem 0;
-      border: 3px solid #00f0ff;
-      box-shadow: 0 0 20px #ff00c8, 0 0 40px #00f0ff;
-    }
-    #welcome video {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 1rem;
-      box-shadow: 0 0 20px #00f0ff;
-    }
-
-    #scrollToTop {
-      display: none;
+    body { font-family: 'Orbitron', 'Audiowide', sans-serif; }
+    .carousel .card { background: #181825; }
+    #theme-toggle {
+      box-shadow: 0 0 10px rgba(255, 0, 200, 0.3);
       position: fixed;
-      bottom: 40px;
-      right: 40px;
-      background: #ff00c8;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1rem;
-      border-radius: 50%;
-      font-size: 1.25rem;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00f0ff, 0 0 20px #ff00c8;
-    }
-    #scrollToTop:hover {
-      background: #00f0ff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #1a1a2e;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      background: #1a1a2e;
+      border: 2px solid #ff00c8;
       color: #ff00c8;
-      text-shadow: 0 0 5px #ff00c8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #theme-toggle:hover {
+      background: #ff00c8;
+      color: white;
+      transform: scale(1.05);
+    }
+    .quote-animation {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <h1>Krish Gharat</h1>
-      <button id="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
-      <ul>
-        <li><a href="#welcome">Welcome</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#achievements">Achievements</a></li>
-        <li><a href="#goals">Goals</a></li>
-        <li><a href="#personal">Personal</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<body class="bg-[#0d0d0d] text-[#00f0ff] min-h-screen">
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+  </button>
+
+  <header class="sticky top-0 z-40 bg-[#1a1a2e] shadow-lg">
+    <nav class="max-w-5xl mx-auto flex items-center justify-between p-4">
+      <div class="text-2xl font-bold text-[#ff00c8] drop-shadow">Krish Gharat</div>
+      <div class="flex items-center gap-4">
+        <ul id="nav-links" class="hidden md:flex space-x-6 font-medium">
+          <li><a href="#welcome" class="hover:text-[#ff00c8]">Welcome</a></li>
+          <li><a href="#about" class="hover:text-[#ff00c8]">About</a></li>
+          <li><a href="#achievements" class="hover:text-[#ff00c8]">Achievements</a></li>
+          <li><a href="#goals" class="hover:text-[#ff00c8]">Goals</a></li>
+          <li><a href="#personal" class="hover:text-[#ff00c8]">Personal</a></li>
+          <li><a href="#testimonials" class="hover:text-[#ff00c8]">Testimonials</a></li>
+          <li><a href="#contact" class="hover:text-[#ff00c8]">Contact</a></li>
+          <li><a href="shop.html" class="hover:text-[#ff00c8]">Shop</a></li>
+        </ul>
+        <button id="hamburger" class="md:hidden btn btn-square btn-ghost text-2xl" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
     </nav>
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-2 px-4 pb-4 bg-[#1a1a2e]">
+      <li><a href="#welcome" class="block py-2 hover:text-[#ff00c8]">Welcome</a></li>
+      <li><a href="#about" class="block py-2 hover:text-[#ff00c8]">About</a></li>
+      <li><a href="#achievements" class="block py-2 hover:text-[#ff00c8]">Achievements</a></li>
+      <li><a href="#goals" class="block py-2 hover:text-[#ff00c8]">Goals</a></li>
+      <li><a href="#personal" class="block py-2 hover:text-[#ff00c8]">Personal</a></li>
+      <li><a href="#testimonials" class="block py-2 hover:text-[#ff00c8]">Testimonials</a></li>
+      <li><a href="#contact" class="block py-2 hover:text-[#ff00c8]">Contact</a></li>
+      <li><a href="shop.html" class="block py-2 hover:text-[#ff00c8]">Shop</a></li>
+    </ul>
   </header>
 
-  <section id="welcome">
-    <h2>Welcome! I'm Krish Rukesh Gharat 👋</h2>
-    <p>Glad to have you visit my digital space.</p>
-    <img src="profile.jpg" alt="Krish Gharat's profile" />
-    <video controls>
-      <source src="intro.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  </section>
+  <main>
+    <section id="welcome" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8 text-center">
+      <h2 class="text-3xl font-bold text-[#ff00c8] mb-2">Welcome! I'm Krish Rukesh Gharat 👋</h2>
+      <p class="mb-4">Glad to have you visit my digital space.</p>
+      <img src="images/profile.jpg" alt="Krish Gharat's profile photo" class="mx-auto w-36 h-36 rounded-full border-4 border-[#00f0ff] shadow-lg object-cover mb-4" />
+      <video controls poster="images/profile.jpg" class="mx-auto rounded-lg shadow-lg w-full max-w-md">
+        <source src="videos/intro.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p><strong>Name:</strong> Krish Rukesh Gharat</p>
-    <p><strong>Location:</strong> Maharashtra, India</p>
-    <p><strong>Education:</strong> Pursuing EXCS Degree from St John College of Engineering and Management</p>
-    <p><strong>Languages:</strong> English, Hindi, Marathi</p>
-  </section>
+    <section id="about" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">About Me</h2>
+      <p><strong>Name:</strong> Krish Rukesh Gharat</p>
+      <p><strong>Location:</strong> Maharashtra, India</p>
+      <p><strong>Education:</strong> Pursuing EXCS Degree from St John College of Engineering and Management</p>
+      <p><strong>Languages:</strong> English, Hindi, Marathi</p>
+    </section>
 
-  <section id="achievements">
-    <h2>Achievements</h2>
-    <ul>
-      <li>Gesture Vocalizer Device</li>
-      <li>Certificate in Cybersecurity</li>
-    </ul>
-  </section>
+    <section id="achievements" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Achievements</h2>
+      <ul id="achievements-list" class="list-disc pl-6 space-y-2"></ul>
+    </section>
 
-  <section id="goals">
-    <h2>Future Goals</h2>
-    <p>I aim to become a full-stack web developer and build real-world applications that solve problems. I also plan to contribute to open-source projects and help others learn coding.</p>
-  </section>
+    <section id="goals" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Future Goals</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Become a full-stack web developer and build real-world applications.</li>
+        <li>Contribute to open-source projects and help others learn coding.</li>
+      </ul>
+    </section>
 
-  <section id="personal">
-    <h2>A Bit About My Personal Side</h2>
-    <p><strong>Hobbies:</strong> Coding, Reading, Photography</p>
-    <p><strong>Favorite Books:</strong> “Atomic Habits”, “The Lean Startup”</p>
-    <p><strong>Startups I Admire:</strong> Notion, Figma</p>
-  </section>
+    <section id="personal" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Personal Side</h2>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Hobbies</h3>
+        <ul id="hobbies-list" class="list-disc pl-6 space-y-1"></ul>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-semibold text-lg mb-2">Favourite Books, Websites, Startups</h3>
+        <ul id="favorites-list" class="list-disc pl-6 space-y-1"></ul>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p><strong>Phone:</strong> <a href="tel:8788567958">8788567958</a></p>
-    <p><strong>Email:</strong> <a href="mailto:123krish7001@sjcem.edu.in">123krish7001@sjcem.edu.in</a></p>
-    <p><strong>GitHub:</strong> <a href="https://github.com/krishgharat" target="_blank">github.com/krishgharat</a></p>
-    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/krish-r-080478297/" target="_blank">linkedin.com/in/krish-r</a></p>
-    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/krishgharat_02/" target="_blank">@krishgharat_02</a></p>
-    <p><strong>Location:</strong> <a href="https://www.google.com/maps/place/Maharashtra" target="_blank">Maharashtra, India</a></p>
-  </section>
+    <section class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Quote of the Day</h2>
+      <blockquote id="quote" class="italic text-lg text-[#ff00c8] quote-animation"></blockquote>
+    </section>
 
-  <footer>
+    <!-- Testimonials Carousel -->
+    <section id="testimonials" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Testimonials</h2>
+      <div class="carousel w-full">
+        <div id="slide1" class="carousel-item relative w-full justify-center">
+          <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">John Doe</h2>
+              <p>"Krish is an exceptional developer with great attention to detail."</p>
+              <div class="card-actions justify-end">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="slide2" class="carousel-item relative w-full justify-center">
+          <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+            <div class="card-body">
+              <h2 class="card-title">Jane Smith</h2>
+              <p>"Always delivers on time and exceeds expectations. Highly recommended!"</p>
+              <div class="card-actions justify-end">
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Carousel navigation -->
+        <div class="flex justify-center w-full py-2 gap-2">
+          <a href="#slide1" class="btn btn-xs">1</a> 
+          <a href="#slide2" class="btn btn-xs">2</a> 
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Contact Me</h2>
+      <div class="mb-4">
+        <p><strong>Phone:</strong> <a href="tel:8788567958">8788567958</a></p>
+        <p><strong>Email:</strong> <a href="mailto:123krish7001@sjcem.edu.in">123krish7001@sjcem.edu.in</a></p>
+        <div class="flex gap-4 mt-2">
+          <a href="https://github.com/krishgharat" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="btn btn-sm btn-outline">GitHub</a>
+          <a href="https://www.linkedin.com/in/krish-r-080478297/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="btn btn-sm btn-outline">LinkedIn</a>
+          <a href="https://www.instagram.com/krishgharat_02/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="btn btn-sm btn-outline">Instagram</a>
+          <a href="https://wa.me/918788567958" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="btn btn-sm btn-outline">WhatsApp</a>
+        </div>
+        <p class="mt-2"><strong>Location:</strong> <a href="https://www.google.com/maps/place/Maharashtra" target="_blank" rel="noopener noreferrer">Maharashtra, India</a></p>
+      </div>
+      <form action="https://formspree.io/f/yourformid" method="POST" class="space-y-4 bg-[#181825] p-6 rounded shadow">
+        <input type="text" name="name" placeholder="Your Name" class="input input-bordered w-full" required>
+        <input type="email" name="email" placeholder="Your Email" class="input input-bordered w-full" required>
+        <textarea name="message" placeholder="Your Message" class="textarea textarea-bordered w-full" required></textarea>
+        <button type="submit" class="btn btn-primary w-full">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-[#1a1a2e] text-center py-4 mt-12 shadow-inner text-[#ff00c8]">
     <p>Made with 💙 by Krish Rukesh Gharat | © 2025</p>
   </footer>
 
-  <button id="scrollToTop" aria-label="Back to top">▲</button>
+  <button id="scrollToTop" class="fixed bottom-6 right-6 bg-[#ff00c8] text-white p-3 rounded-full shadow-lg hidden hover:bg-[#00f0ff] transition" aria-label="Scroll to top">
+    ↑
+  </button>
 
   <script>
+    // Hamburger menu
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('nav ul');
+    const navLinks = document.getElementById('nav-links');
+    const mobileMenu = document.getElementById('mobile-menu');
     hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+      mobileMenu.classList.toggle('hidden');
+      hamburger.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
     });
 
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('svg');
+    
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      // Update icon based on theme
+      if (theme === 'dark') {
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+      } else {
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // On load, set theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) setTheme(savedTheme);
+
+    // Scroll to top button
     const scrollBtn = document.getElementById('scrollToTop');
     window.addEventListener('scroll', () => {
       scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
     scrollBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Save last visited section
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function() {
+        localStorage.setItem('lastSection', this.getAttribute('href'));
+      });
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      const last = localStorage.getItem('lastSection');
+      if (last && document.querySelector(last)) {
+        setTimeout(() => document.querySelector(last).scrollIntoView({behavior: 'smooth'}), 300);
+      }
+    });
+
+    // Simulated JSON data
+    const data = {
+      achievements: [
+        { title: "Gesture Vocalizer Device", year: 2023 },
+        { title: "Certificate in Cybersecurity", year: 2022 },
+        { title: "Built a Weather App", year: 2023 }
+      ],
+      hobbies: [
+        { name: "Coding", reason: "I love solving problems and building things." },
+        { name: "Reading", reason: "It expands my knowledge and imagination." },
+        { name: "Photography", reason: "Capturing moments is fun and creative." }
+      ],
+      favorites: [
+        { type: "Book", name: "Atomic Habits", reason: "Great for self-improvement." },
+        { type: "Book", name: "The Lean Startup", reason: "Teaches how to build startups." },
+        { type: "Website", name: "freeCodeCamp", reason: "Amazing for learning to code." },
+        { type: "Startup", name: "Notion", reason: "Revolutionized productivity tools." },
+        { type: "Startup", name: "Figma", reason: "Design collaboration made easy." }
+      ]
+    };
+
+    // Load Achievements
+    const achievementsList = document.getElementById('achievements-list');
+    data.achievements.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.title} (${item.year})`;
+      achievementsList.appendChild(li);
+    });
+
+    // Load Hobbies
+    const hobbiesList = document.getElementById('hobbies-list');
+    data.hobbies.forEach(hobby => {
+      const li = document.createElement('li');
+      li.textContent = `${hobby.name} — ${hobby.reason}`;
+      hobbiesList.appendChild(li);
+    });
+
+    // Load Favorites
+    const favoritesList = document.getElementById('favorites-list');
+    data.favorites.forEach(fav => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${fav.type}:</strong> ${fav.name} — ${fav.reason}`;
+      favoritesList.appendChild(li);
+    });
+
+    // Quote of the Day (Public API)
+    async function fetchNewQuote() {
+      try {
+        const response = await fetch('https://api.quotable.io/random');
+        const data = await response.json();
+        const quoteElement = document.getElementById('quote');
+        quoteElement.classList.remove('quote-animation');
+        void quoteElement.offsetWidth; // Trigger reflow
+        quoteElement.classList.add('quote-animation');
+        quoteElement.textContent = `"${data.content}" — ${data.author}`;
+      } catch (error) {
+        document.getElementById('quote').textContent = "Stay positive and keep learning!";
+      }
+    }
+
+    // Fetch quote on page load
+    fetchNewQuote();
+
+    // Cookie Consent
+    window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+        palette: {
+          popup: { background: "#1a1a2e" },
+          button: { background: "#ff00c8" }
+        },
+        theme: "classic",
+        content: {
+          message: "This website uses cookies to enhance your experience.",
+          dismiss: "Got it!",
+          link: "Learn more"
+        }
+      })
     });
   </script>
 </body>
