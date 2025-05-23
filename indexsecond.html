@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Krish Gharat - Portfolio, Education, Goals, Achievements" />
+  <meta name="author" content="Krish Rukesh Gharat" />
+  <meta property="og:title" content="Krish Gharat Portfolio" />
+  <meta property="og:description" content="Personal portfolio site showcasing achievements, goals, and projects." />
+  <meta property="og:image" content="images/profile.jpg" />
+  <meta property="og:url" content="https://your-website-url.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Krish Gharat Portfolio" />
+  <meta name="twitter:description" content="Personal portfolio site showcasing achievements, goals, and projects." />
+  <meta name="twitter:image" content="images/profile.jpg" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <title>Krish Gharat | Cyberpunk Portfolio</title>
+  <!-- Tailwind CSS and DaisyUI -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+  <!-- Cookie Consent -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Orbitron', 'Audiowide', sans-serif; }
+    .carousel .card { background: #181825; }
+    #theme-toggle {
+      box-shadow: 0 0 10px rgba(255, 0, 200, 0.3);
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      background: #1a1a2e;
+      border: 2px solid #ff00c8;
+      color: #ff00c8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #theme-toggle:hover {
+      background: #ff00c8;
+      color: white;
+      transform: scale(1.05);
+    }
+    .quote-animation {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-[#0d0d0d] text-[#00f0ff] min-h-screen">
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+  </button>
+
+  <header class="sticky top-0 z-40 bg-[#1a1a2e] shadow-lg">
+    <nav class="max-w-5xl mx-auto flex items-center justify-between p-4">
+      <div class="text-2xl font-bold text-[#ff00c8] drop-shadow">Krish Gharat</div>
+      <div class="flex items-center gap-4">
+        <ul id="nav-links" class="hidden md:flex space-x-6 font-medium">
+          <li><a href="#welcome" class="hover:text-[#ff00c8]">Welcome</a></li>
+          <li><a href="#about" class="hover:text-[#ff00c8]">About</a></li>
+          <li><a href="#achievements" class="hover:text-[#ff00c8]">Achievements</a></li>
+          <li><a href="#goals" class="hover:text-[#ff00c8]">Goals</a></li>
+          <li><a href="#personal" class="hover:text-[#ff00c8]">Personal</a></li>
+          <li><a href="#testimonials" class="hover:text-[#ff00c8]">Testimonials</a></li>
+          <li><a href="#contact" class="hover:text-[#ff00c8]">Contact</a></li>
+        </ul>
+        <button id="hamburger" class="md:hidden btn btn-square btn-ghost text-2xl" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu" class="md:hidden hidden flex-col space-y-2 px-4 pb-4 bg-[#1a1a2e]">
+      <li><a href="#welcome" class="block py-2 hover:text-[#ff00c8]">Welcome</a></li>
+      <li><a href="#about" class="block py-2 hover:text-[#ff00c8]">About</a></li>
+      <li><a href="#achievements" class="block py-2 hover:text-[#ff00c8]">Achievements</a></li>
+      <li><a href="#goals" class="block py-2 hover:text-[#ff00c8]">Goals</a></li>
+      <li><a href="#personal" class="block py-2 hover:text-[#ff00c8]">Personal</a></li>
+      <li><a href="#testimonials" class="block py-2 hover:text-[#ff00c8]">Testimonials</a></li>
+      <li><a href="#contact" class="block py-2 hover:text-[#ff00c8]">Contact</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <section id="welcome" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8 text-center">
+      <h2 class="text-3xl font-bold text-[#ff00c8] mb-2">Welcome! I'm Krish Rukesh Gharat 👋</h2>
+      <p class="mb-4">Glad to have you visit my digital space.</p>
+      <img src="image/profile.jpg" alt="Krish Gharat's profile photo" class="mx-auto w-36 h-36 rounded-full border-4 border-[#00f0ff] shadow-lg object-cover mb-4" />
+      <video controls poster="image/profile.jpg" class="mx-auto rounded-lg shadow-lg w-full max-w-md">
+        <source src="video/intro.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      <!-- Social Share Buttons -->
+      <div class="mt-6 flex justify-center gap-4">
+        <button onclick="shareOnTwitter()" class="btn btn-outline btn-sm">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+          Share
+        </button>
+        <button onclick="shareOnLinkedIn()" class="btn btn-outline btn-sm">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          Share
+        </button>
+        <button onclick="shareOnFacebook()" class="btn btn-outline btn-sm">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Share
+        </button>
+      </div>
+    </section>
+
+    <section id="about" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">About Me</h2>
+      <p><strong>Name:</strong> Krish Rukesh Gharat</p>
+      <p><strong>Location:</strong> Maharashtra, India</p>
+      <p><strong>Education:</strong> Pursuing EXCS Degree from St John College of Engineering and Management</p>
+      <p><strong>Languages:</strong> English, Hindi, Marathi</p>
+    </section>
+
+    <section id="achievements" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Achievements</h2>
+      <ul id="achievements-list" class="list-disc pl-6 space-y-2"></ul>
+    </section>
+
+    <section id="goals" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Future Goals</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Become a full-stack web developer and build real-world applications.</li>
+        <li>Contribute to open-source projects and help others learn coding.</li>
+      </ul>
+    </section>
+
+    <section id="personal" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Personal Side</h2>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Hobbies</h3>
+        <ul id="hobbies-list" class="list-disc pl-6 space-y-1"></ul>
+      </div>
+      <div class="mt-4">
+        <h3 class="font-semibold text-lg mb-2">Favourite Books, Websites, Startups</h3>
+        <ul id="favorites-list" class="list-disc pl-6 space-y-1"></ul>
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Quote of the Day</h2>
+      <blockquote id="quote" class="italic text-lg text-[#ff00c8] quote-animation"></blockquote>
+    </section>
+
+    <!-- Testimonials Carousel -->
+    <section id="testimonials" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Testimonials</h2>
+      <div class="carousel w-full" id="testimonials-carousel">
+        <!-- Testimonials will be loaded dynamically -->
+      </div>
+    </section>
+
+    <section id="contact" class="max-w-3xl mx-auto my-8 bg-[#111122] rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[#ff00c8] mb-4">Contact Me</h2>
+      <div class="mb-4">
+        <p><strong>Phone:</strong> <a href="tel:8788567958">8788567958</a></p>
+        <p><strong>Email:</strong> <a href="mailto:123krish7001@sjcem.edu.in">123krish7001@sjcem.edu.in</a></p>
+        <div class="flex gap-4 mt-2">
+          <a href="https://github.com/krishgharat" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="btn btn-sm btn-outline">GitHub</a>
+          <a href="https://www.linkedin.com/in/krish-r-080478297/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="btn btn-sm btn-outline">LinkedIn</a>
+          <a href="https://www.instagram.com/krishgharat_02/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="btn btn-sm btn-outline">Instagram</a>
+          <a href="https://wa.me/918788567958" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="btn btn-sm btn-outline">WhatsApp</a>
+        </div>
+        <p class="mt-2"><strong>Location:</strong> <a href="https://www.google.com/maps/place/Maharashtra" target="_blank" rel="noopener noreferrer">Maharashtra, India</a></p>
+      </div>
+      <form action="https://formspree.io/f/yourformid" method="POST" class="space-y-4 bg-[#181825] p-6 rounded shadow">
+        <input type="text" name="name" placeholder="Your Name" class="input input-bordered w-full" required>
+        <input type="email" name="email" placeholder="Your Email" class="input input-bordered w-full" required>
+        <textarea name="message" placeholder="Your Message" class="textarea textarea-bordered w-full" required></textarea>
+        <button type="submit" class="btn btn-primary w-full">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-[#1a1a2e] text-center py-4 mt-12 shadow-inner text-[#ff00c8]">
+    <p>Made with 💙 by Krish Rukesh Gharat | © 2025</p>
+  </footer>
+
+  <button id="scrollToTop" class="fixed bottom-6 right-6 bg-[#ff00c8] text-white p-3 rounded-full shadow-lg hidden hover:bg-[#00f0ff] transition" aria-label="Scroll to top">
+    ↑
+  </button>
+
+  <script>
+    // Data object containing all dynamic content
+    const data = {
+      achievements: [
+        {
+          title: "Gesture Vocalizer Device",
+          year: 2023,
+          description: "Developed a device that converts hand gestures into speech"
+        },
+        {
+          title: "Certificate in Cybersecurity",
+          year: 2022,
+          description: "Completed comprehensive cybersecurity training"
+        },
+        {
+          title: "Built a Weather App",
+          year: 2023,
+          description: "Created a weather application using modern web technologies"
+        }
+      ],
+      hobbies: [
+        {
+          name: "Coding",
+          reason: "I love solving problems and building things"
+        },
+        {
+          name: "Reading",
+          reason: "It expands my knowledge and imagination"
+        },
+        {
+          name: "Photography",
+          reason: "Capturing moments is fun and creative"
+        }
+      ],
+      favorites: [
+        {
+          type: "Book",
+          name: "Atomic Habits",
+          reason: "Great for self-improvement"
+        },
+        {
+          type: "Book",
+          name: "The Lean Startup",
+          reason: "Teaches how to build startups"
+        },
+        {
+          type: "Website",
+          name: "freeCodeCamp",
+          reason: "Amazing for learning to code"
+        },
+        {
+          type: "Startup",
+          name: "Notion",
+          reason: "Revolutionized productivity tools"
+        },
+        {
+          type: "Startup",
+          name: "Figma",
+          reason: "Design collaboration made easy"
+        }
+      ],
+      testimonials: [
+        {
+          name: "John Doe",
+          role: "Senior Developer",
+          text: "Krish is an exceptional developer with great attention to detail.",
+          rating: 5
+        },
+        {
+          name: "Jane Smith",
+          role: "Project Manager",
+          text: "Always delivers on time and exceeds expectations. Highly recommended!",
+          rating: 5
+        }
+      ]
+    };
+
+    // Load Achievements
+    const achievementsList = document.getElementById('achievements-list');
+    data.achievements.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.title} (${item.year}) - ${item.description}`;
+      achievementsList.appendChild(li);
+    });
+
+    // Load Hobbies
+    const hobbiesList = document.getElementById('hobbies-list');
+    data.hobbies.forEach(hobby => {
+      const li = document.createElement('li');
+      li.textContent = `${hobby.name} — ${hobby.reason}`;
+      hobbiesList.appendChild(li);
+    });
+
+    // Load Favorites
+    const favoritesList = document.getElementById('favorites-list');
+    data.favorites.forEach(fav => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${fav.type}:</strong> ${fav.name} — ${fav.reason}`;
+      favoritesList.appendChild(li);
+    });
+
+    // Load Testimonials
+    const testimonialsCarousel = document.getElementById('testimonials-carousel');
+    data.testimonials.forEach((testimonial, index) => {
+      const slide = document.createElement('div');
+      slide.id = `slide${index + 1}`;
+      slide.className = 'carousel-item relative w-full justify-center';
+      slide.innerHTML = `
+        <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+          <div class="card-body">
+            <h2 class="card-title">${testimonial.name}</h2>
+            <p>${testimonial.text}</p>
+            <div class="card-actions justify-end">
+              <div class="rating rating-sm">
+                ${Array(testimonial.rating).fill().map(() => 
+                  '<input type="radio" name="rating-${index + 1}" class="mask mask-star-2 bg-orange-400" checked />'
+                ).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      testimonialsCarousel.appendChild(slide);
+    });
+
+    // Add carousel navigation
+    const carouselNav = document.createElement('div');
+    carouselNav.className = 'flex justify-center w-full py-2 gap-2';
+    data.testimonials.forEach((_, index) => {
+      const navButton = document.createElement('a');
+      navButton.href = `#slide${index + 1}`;
+      navButton.className = 'btn btn-xs';
+      navButton.textContent = index + 1;
+      carouselNav.appendChild(navButton);
+    });
+    testimonialsCarousel.appendChild(carouselNav);
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      hamburger.setAttribute('aria-expanded', !mobileMenu.classList.contains('hidden'));
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('svg');
+    
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      // Update icon based on theme
+      if (theme === 'dark') {
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+      } else {
+        themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // On load, set theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) setTheme(savedTheme);
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Save last visited section
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function() {
+        localStorage.setItem('lastSection', this.getAttribute('href'));
+      });
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      const last = localStorage.getItem('lastSection');
+      if (last && document.querySelector(last)) {
+        setTimeout(() => document.querySelector(last).scrollIntoView({behavior: 'smooth'}), 300);
+      }
+    });
+
+    // Quote of the Day (Public API)
+    async function fetchNewQuote() {
+      try {
+        const response = await fetch('https://api.quotable.io/random');
+        const data = await response.json();
+        const quoteElement = document.getElementById('quote');
+        quoteElement.classList.remove('quote-animation');
+        void quoteElement.offsetWidth; // Trigger reflow
+        quoteElement.classList.add('quote-animation');
+        quoteElement.textContent = `"${data.content}" — ${data.author}`;
+      } catch (error) {
+        document.getElementById('quote').textContent = "Stay positive and keep learning!";
+      }
+    }
+
+    // Fetch quote on page load
+    fetchNewQuote();
+
+    // Cookie Consent
+    window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+        palette: {
+          popup: { background: "#1a1a2e" },
+          button: { background: "#ff00c8" }
+        },
+        theme: "classic",
+        content: {
+          message: "This website uses cookies to enhance your experience.",
+          dismiss: "Got it!",
+          link: "Learn more"
+        }
+      })
+    });
+
+    // Social Media Sharing Functions
+    function shareOnTwitter() {
+      const text = "Check out Krish Gharat's awesome portfolio!";
+      const url = window.location.href;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function shareOnLinkedIn() {
+      const url = window.location.href;
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function shareOnFacebook() {
+      const url = window.location.href;
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
