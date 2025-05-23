@@ -46,23 +46,6 @@
       from { transform: translateX(100%); }
       to { transform: translateX(0); }
     }
-    .cookie-consent {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #1a1a2e;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-    }
-    .cookie-consent.visible {
-      transform: translateY(0);
-    }
   </style>
 </head>
 <body class="bg-[#0d0d0d] text-[#00f0ff] min-h-screen">
@@ -72,17 +55,6 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
     </svg>
   </button>
-
-  <!-- Cookie Consent -->
-  <div class="cookie-consent" id="cookieConsent">
-    <div class="text-sm">
-      We use cookies to enhance your shopping experience. By continuing to visit this site you agree to our use of cookies.
-    </div>
-    <div class="flex gap-2">
-      <button class="btn btn-sm" onclick="acceptCookies()">Accept</button>
-      <button class="btn btn-sm btn-outline" onclick="declineCookies()">Decline</button>
-    </div>
-  </div>
 
   <header class="sticky top-0 z-40 bg-[#1a1a2e] shadow-lg">
     <nav class="max-w-5xl mx-auto flex items-center justify-between p-4">
@@ -125,7 +97,7 @@
 
     <!-- Cart Modal -->
     <dialog id="cart-modal" class="modal">
-      <div class="modal-box bg-[#1a1a2e]">
+      <div class="modal-box bg-[#1a1a2e] max-w-3xl">
         <h3 class="font-bold text-lg mb-4">Shopping Cart</h3>
         <div id="cart-items" class="space-y-4">
           <!-- Cart items will be loaded here -->
@@ -134,11 +106,61 @@
           <div class="flex justify-between w-full">
             <div class="text-lg font-bold">Total: $<span id="cart-total">0</span></div>
             <div class="flex gap-2">
-              <button class="btn btn-sm" onclick="document.getElementById('cart-modal').close()">Close</button>
-              <button class="btn btn-sm btn-primary" onclick="checkout()">Checkout</button>
+              <button class="btn btn-sm" onclick="document.getElementById('cart-modal').close()">Continue Shopping</button>
+              <button class="btn btn-sm btn-primary" id="checkout-btn">Checkout</button>
             </div>
           </div>
         </div>
+      </div>
+    </dialog>
+
+    <!-- Checkout Modal -->
+    <dialog id="checkout-modal" class="modal">
+      <div class="modal-box bg-[#1a1a2e] max-w-3xl">
+        <h3 class="font-bold text-lg mb-4">Checkout</h3>
+        <form id="checkout-form" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-control">
+              <label class="label">First Name</label>
+              <input type="text" class="input input-bordered" required>
+            </div>
+            <div class="form-control">
+              <label class="label">Last Name</label>
+              <input type="text" class="input input-bordered" required>
+            </div>
+          </div>
+          <div class="form-control">
+            <label class="label">Email</label>
+            <input type="email" class="input input-bordered" required>
+          </div>
+          <div class="form-control">
+            <label class="label">Address</label>
+            <input type="text" class="input input-bordered" required>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-control">
+              <label class="label">City</label>
+              <input type="text" class="input input-bordered" required>
+            </div>
+            <div class="form-control">
+              <label class="label">Postal Code</label>
+              <input type="text" class="input input-bordered" required>
+            </div>
+          </div>
+          <div class="form-control">
+            <label class="label">Payment Method</label>
+            <select class="select select-bordered" required>
+              <option value="">Select Payment Method</option>
+              <option value="credit">Credit Card</option>
+              <option value="debit">Debit Card</option>
+              <option value="upi">UPI</option>
+            </select>
+          </div>
+          <div class="modal-action">
+            <button type="button" class="btn" onclick="document.getElementById('checkout-modal').close()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+          </div>
+        </form>
       </div>
     </dialog>
   </main>
@@ -196,40 +218,16 @@
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) setTheme(savedTheme);
 
-    // Cookie consent
-    const cookieConsent = document.getElementById('cookieConsent');
-    
-    function showCookieConsent() {
-      if (!localStorage.getItem('cookieConsent')) {
-        cookieConsent.classList.add('visible');
-      }
-    }
-
-    function acceptCookies() {
-      localStorage.setItem('cookieConsent', 'accepted');
-      cookieConsent.classList.remove('visible');
-      document.cookie = "user_preference=accepted; max-age=31536000; path=/";
-    }
-
-    function declineCookies() {
-      localStorage.setItem('cookieConsent', 'declined');
-      cookieConsent.classList.remove('visible');
-    }
-
-    // Show cookie consent on page load
-    window.addEventListener('load', showCookieConsent);
-
     // Shopping cart functionality
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    updateCartCount();
-
+    
     // Products data
     const products = [
       {
         id: 1,
         name: "Neon Grid T-Shirt",
         price: 24.99,
-        image: "neon-tshirt.jpg",
+        image: "image's/products/neon-tshirt.jpg",
         description: "Premium quality t-shirt with a futuristic neon grid design.",
         sizes: ["S", "M", "L", "XL"]
       },
@@ -237,7 +235,7 @@
         id: 2,
         name: "Cyberpunk Woman Art",
         price: 39.99,
-        image: "cyberpunk-women.jpg",
+        image: "image's/products/cyberpunk-women.jpg",
         description: "Vivid digital art print of a cyberpunk-inspired woman.",
         sizes: ["A4", "A3", "A2"]
       },
@@ -245,7 +243,7 @@
         id: 3,
         name: "Tech Tunnel Poster",
         price: 19.99,
-        image: "tech-tunnel.jpg",
+        image: "image's/products/tech-tunnel.jpg",
         description: "High-resolution poster of a glowing tech tunnel.",
         sizes: ["A4", "A3", "A2"]
       },
@@ -253,7 +251,7 @@
         id: 4,
         name: "Neon Circuit Phone Case",
         price: 17.99,
-        image: "phone-case.jpg",
+        image: "image's/products/phone-case.jpg",
         description: "Protective phone case with a glowing neon circuit design.",
         sizes: ["iPhone 13", "iPhone 14", "Samsung S21"]
       },
@@ -261,7 +259,7 @@
         id: 5,
         name: "Cyberpunk Cityscape Print",
         price: 29.99,
-        image: "cyberpunk-city.jpg",
+        image: "image's/products/cyberpunk-city.jpg",
         description: "Stunning print of a futuristic cyberpunk city under a neon moon.",
         sizes: ["A4", "A3", "A2"]
       }
@@ -394,23 +392,40 @@
       setTimeout(() => notification.remove(), 2000);
     }
 
-    // Checkout
+    // Checkout function
     function checkout() {
       if (cart.length === 0) {
         showNotification('Your cart is empty!');
         return;
       }
-      // Add your checkout logic here
+      
+      document.getElementById('cart-modal').close();
+      document.getElementById('checkout-modal').showModal();
+    }
+
+    // Handle checkout form submission
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Here you would typically send the order to a server
+      // For now, we'll just show a success message
       showNotification('Order placed successfully!');
+      
+      // Clear the cart
       cart = [];
       updateCart();
-      document.getElementById('cart-modal').close();
-    }
+      
+      // Close the checkout modal
+      document.getElementById('checkout-modal').close();
+    });
 
     // Cart modal
     document.getElementById('cart-btn').addEventListener('click', () => {
       document.getElementById('cart-modal').showModal();
     });
+
+    // Add checkout button event listener
+    document.getElementById('checkout-btn').addEventListener('click', checkout);
 
     // Load products on page load
     loadProducts();
