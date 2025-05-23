@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Krish Gharat | Shop</title>
+  <meta name="description" content="Shop for premium cyberpunk-themed merchandise">
+  <meta name="keywords" content="cyberpunk, merchandise, t-shirts, art prints, phone cases">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Orbitron', 'Audiowide', sans-serif; }
+    body { 
+      font-family: 'Orbitron', 'Audiowide', sans-serif;
+      scroll-behavior: smooth;
+    }
     #theme-toggle {
       box-shadow: 0 0 10px rgba(255, 0, 200, 0.3);
       position: fixed;
@@ -41,6 +46,23 @@
       from { transform: translateX(100%); }
       to { transform: translateX(0); }
     }
+    .cookie-consent {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1a1a2e;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .cookie-consent.visible {
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="bg-[#0d0d0d] text-[#00f0ff] min-h-screen">
@@ -51,11 +73,22 @@
     </svg>
   </button>
 
+  <!-- Cookie Consent -->
+  <div class="cookie-consent" id="cookieConsent">
+    <div class="text-sm">
+      We use cookies to enhance your shopping experience. By continuing to visit this site you agree to our use of cookies.
+    </div>
+    <div class="flex gap-2">
+      <button class="btn btn-sm" onclick="acceptCookies()">Accept</button>
+      <button class="btn btn-sm btn-outline" onclick="declineCookies()">Decline</button>
+    </div>
+  </div>
+
   <header class="sticky top-0 z-40 bg-[#1a1a2e] shadow-lg">
     <nav class="max-w-5xl mx-auto flex items-center justify-between p-4">
-      <a href="index.html" class="text-2xl font-bold text-[#ff00c8] drop-shadow">Krish Gharat</a>
+      <a href="indexfour.html" class="text-2xl font-bold text-[#ff00c8] drop-shadow">Krish Gharat</a>
       <div class="flex items-center gap-4">
-        <a href="index.html" class="hover:text-[#ff00c8]">Back to Portfolio</a>
+        <a href="indexfour.html" class="hover:text-[#ff00c8]">Back to Portfolio</a>
         <button id="cart-btn" class="btn btn-sm btn-outline relative">
           🛒 Cart
           <span id="cart-count" class="absolute -top-2 -right-2 bg-[#ff00c8] text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
@@ -65,12 +98,30 @@
   </header>
 
   <main class="max-w-5xl mx-auto p-4">
-    <h1 class="text-3xl font-bold text-[#ff00c8] mb-8">Shop</h1>
-    
+    <!-- Hero Section -->
+    <section class="py-12 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-[#ff00c8] mb-4">Cyberpunk Collection</h1>
+      <p class="text-xl mb-8">Premium merchandise for the digital age</p>
+    </section>
+
     <!-- Products Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
-      <!-- Products will be loaded here -->
-    </div>
+    <section class="py-8">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-[#ff00c8]">Featured Products</h2>
+        <div class="flex gap-4">
+          <select id="sort-select" class="select select-bordered w-full max-w-xs" onchange="sortProducts()">
+            <option value="default">Sort by</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
+        <!-- Products will be loaded here -->
+      </div>
+    </section>
 
     <!-- Cart Modal -->
     <dialog id="cart-modal" class="modal">
@@ -93,7 +144,32 @@
   </main>
 
   <footer class="bg-[#1a1a2e] text-center py-4 mt-12 shadow-inner text-[#ff00c8]">
-    <p>Made with 💙 by Krish Rukesh Gharat | © 2025</p>
+    <div class="max-w-5xl mx-auto p-4">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h3 class="font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="indexfour.html" class="hover:text-[#00f0ff]">Home</a></li>
+            <li><a href="#products" class="hover:text-[#00f0ff]">Products</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold mb-4">Customer Service</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-[#00f0ff]">Shipping Policy</a></li>
+            <li><a href="#" class="hover:text-[#00f0ff]">Returns & Refunds</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-[#00f0ff]">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-[#00f0ff]">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>Made with 💙 by Krish Rukesh Gharat | © 2025</p>
+    </div>
   </footer>
 
   <script>
@@ -120,58 +196,91 @@
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) setTheme(savedTheme);
 
+    // Cookie consent
+    const cookieConsent = document.getElementById('cookieConsent');
+    
+    function showCookieConsent() {
+      if (!localStorage.getItem('cookieConsent')) {
+        cookieConsent.classList.add('visible');
+      }
+    }
+
+    function acceptCookies() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookieConsent.classList.remove('visible');
+      document.cookie = "user_preference=accepted; max-age=31536000; path=/";
+    }
+
+    function declineCookies() {
+      localStorage.setItem('cookieConsent', 'declined');
+      cookieConsent.classList.remove('visible');
+    }
+
+    // Show cookie consent on page load
+    window.addEventListener('load', showCookieConsent);
+
     // Shopping cart functionality
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartCount();
 
-    // Sample products data - Replace with your own products
-  const products = [
-  {
-    id: 1,
-    name: "Neon Grid T-Shirt",
-    price: 24.99,
-    image: "neon-tshirt.jpg",
-    description: "Premium quality t-shirt with a futuristic neon grid design."
-  },
-  {
-    id: 2,
-    name: "Cyberpunk Woman Art",
-    price: 39.99,
-    image: "cyberpunk-women.jpg",
-    description: "Vivid digital art print of a cyberpunk-inspired woman."
-  },
-  {
-    id: 3,
-    name: "Tech Tunnel Poster",
-    price: 19.99,
-    image: "tech-tunnel.jpg",
-    description: "High-resolution poster of a glowing tech tunnel."
-  },
-  {
-    id: 4,
-    name: "Neon Circuit Phone Case",
-    price: 17.99,
-    image: "phone-case.jpg",
-    description: "Protective phone case with a glowing neon circuit design."
-  },
-  {
-    id: 5,
-    name: "Cyberpunk Cityscape Print",
-    price: 29.99,
-    image: "cyberpunk-city.jpg",
-    description: "Stunning print of a futuristic cyberpunk city under a neon moon."
-  }
-];
+    // Products data
+    const products = [
+      {
+        id: 1,
+        name: "Neon Grid T-Shirt",
+        price: 24.99,
+        image: "image's/products/neon-tshirt.jpg",
+        description: "Premium quality t-shirt with a futuristic neon grid design.",
+        sizes: ["S", "M", "L", "XL"]
+      },
+      {
+        id: 2,
+        name: "Cyberpunk Woman Art",
+        price: 39.99,
+        image: "image's/products/cyberpunk-women.jpg",
+        description: "Vivid digital art print of a cyberpunk-inspired woman.",
+        sizes: ["A4", "A3", "A2"]
+      },
+      {
+        id: 3,
+        name: "Tech Tunnel Poster",
+        price: 19.99,
+        image: "image's/products/tech-tunnel.jpg",
+        description: "High-resolution poster of a glowing tech tunnel.",
+        sizes: ["A4", "A3", "A2"]
+      },
+      {
+        id: 4,
+        name: "Neon Circuit Phone Case",
+        price: 17.99,
+        image: "image's/products/phone-case.jpg",
+        description: "Protective phone case with a glowing neon circuit design.",
+        sizes: ["iPhone 13", "iPhone 14", "Samsung S21"]
+      },
+      {
+        id: 5,
+        name: "Cyberpunk Cityscape Print",
+        price: 29.99,
+        image: "image's/products/cyberpunk-city.jpg",
+        description: "Stunning print of a futuristic cyberpunk city under a neon moon.",
+        sizes: ["A4", "A3", "A2"]
+      }
+    ];
 
     // Load products
-    function loadProducts() {
+    function loadProducts(productsToShow = products) {
       const productsGrid = document.getElementById('products-grid');
-      productsGrid.innerHTML = products.map(product => `
+      productsGrid.innerHTML = productsToShow.map(product => `
         <div class="card bg-[#111122] shadow-xl product-card">
           <figure><img src="${product.image}" alt="${product.name}" class="h-48 w-full object-cover" /></figure>
           <div class="card-body">
             <h2 class="card-title text-[#ff00c8]">${product.name}</h2>
             <p>${product.description}</p>
+            <div class="form-control w-full max-w-xs">
+              <select class="select select-bordered w-full" id="size-${product.id}">
+                ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+              </select>
+            </div>
             <div class="card-actions justify-between items-center mt-4">
               <div class="text-lg font-bold">$${product.price}</div>
               <button class="btn btn-sm btn-primary" onclick="addToCart(${product.id})">Add to Cart</button>
@@ -181,15 +290,38 @@
       `).join('');
     }
 
+    // Sort products
+    function sortProducts() {
+      const sortBy = document.getElementById('sort-select').value;
+      let sortedProducts = [...products];
+
+      switch(sortBy) {
+        case 'price-low':
+          sortedProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high':
+          sortedProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'name':
+          sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        default:
+          break;
+      }
+
+      loadProducts(sortedProducts);
+    }
+
     // Add to cart
     function addToCart(productId) {
       const product = products.find(p => p.id === productId);
-      const existingItem = cart.find(item => item.id === productId);
+      const size = document.getElementById(`size-${productId}`).value;
+      const existingItem = cart.find(item => item.id === productId && item.size === size);
 
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push({ ...product, size, quantity: 1 });
       }
 
       updateCart();
@@ -218,13 +350,14 @@
         <div class="flex justify-between items-center">
           <div>
             <h4 class="font-bold">${item.name}</h4>
+            <p class="text-sm">Size: ${item.size}</p>
             <p class="text-sm">$${item.price} x ${item.quantity}</p>
           </div>
           <div class="flex items-center gap-2">
-            <button class="btn btn-xs" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+            <button class="btn btn-xs" onclick="updateQuantity(${item.id}, '${item.size}', ${item.quantity - 1})">-</button>
             <span>${item.quantity}</span>
-            <button class="btn btn-xs" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
-            <button class="btn btn-xs btn-error" onclick="removeFromCart(${item.id})">×</button>
+            <button class="btn btn-xs" onclick="updateQuantity(${item.id}, '${item.size}', ${item.quantity + 1})">+</button>
+            <button class="btn btn-xs btn-error" onclick="removeFromCart(${item.id}, '${item.size}')">×</button>
           </div>
         </div>
       `).join('');
@@ -233,13 +366,13 @@
     }
 
     // Update quantity
-    function updateQuantity(productId, newQuantity) {
+    function updateQuantity(productId, size, newQuantity) {
       if (newQuantity < 1) {
-        removeFromCart(productId);
+        removeFromCart(productId, size);
         return;
       }
 
-      const item = cart.find(item => item.id === productId);
+      const item = cart.find(item => item.id === productId && item.size === size);
       if (item) {
         item.quantity = newQuantity;
         updateCart();
@@ -247,8 +380,8 @@
     }
 
     // Remove from cart
-    function removeFromCart(productId) {
-      cart = cart.filter(item => item.id !== productId);
+    function removeFromCart(productId, size) {
+      cart = cart.filter(item => !(item.id === productId && item.size === size));
       updateCart();
     }
 
